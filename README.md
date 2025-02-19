@@ -18,7 +18,7 @@ This project is divided into **three key phases**, each focusing on a critical a
 
 ---
 
-### **🚀 Phase 2: Service Deployment**
+### **Phase 2: Service Deployment**
 - **Apache Web Server (httpd)** installation and verification  
 - **MariaDB (MySQL) database** setup and security hardening  
 - **NFS shared storage** configuration using **TrueNAS**  
@@ -36,6 +36,7 @@ This project is divided into **three key phases**, each focusing on a critical a
 
 Each phase builds upon the previous one, creating a **scalable, secure, and production-ready Linux infrastructure.**
 ---
+# Phase 1: Infrastructure Setup
 
 ## Project Objectives
 Phase 1 of this project focuses on the **foundational infrastructure setup**, ensuring all systems are ready for enterprise services.  
@@ -59,8 +60,6 @@ The project consists of **three RHEL 9 virtual machines** running in **VMware Wo
 | `RHEL9-Storage` | NFS/Samba Backup Server | 2 vCPU | 2GB    | 20GB   |
 
 ---
-
-## Phase 1: Configuration & Setup
 
 ### 1. Networking: Static IP Assignment
 Each VM was assigned a **static IP** to ensure stable connectivity:
@@ -132,17 +131,6 @@ All screenshots for **Phase 1** are available [here](screenshots/screenshots.md)
 
 ---
 
-## Next Steps: Phase 2 Service Deployment
-With **Phase 1 completed**, I will now deploy **enterprise services** in **Phase 2**:
-- **Apache Web Server (httpd)**
-- **MariaDB (MySQL) Database**
-- **NFS/Samba for Shared Storage**
-- **Automation with Ansible (Planned for later)**
-
-This will transform the infrastructure into a **fully functional enterprise-grade system.**
-
----
-
 ## Conclusion
 This project demonstrates **hands-on Linux System Administration skills**, covering:
 - **Enterprise server deployment**
@@ -150,6 +138,16 @@ This project demonstrates **hands-on Linux System Administration skills**, cover
 - **Network configuration with static IPs**
 - **Secure SSH authentication**
 - **VMware virtualization experience**
+
+
+## Next Steps: Phase 2 Service Deployment
+With **Phase 1 completed**, I will now deploy **enterprise services** in **Phase 2**:
+- **Apache Web Server (httpd)**
+- **MariaDB (MySQL) Database**
+- **NFS/Samba for Shared Storage**
+- **Automation with Ansible (Planned for later)**
+
+---
 
 **This repository will continue to evolve as I deploy services in the upcoming phases.**  
 Stay tuned for **Phase 2: Service Deployment!**
@@ -256,6 +254,18 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
 All screenshots for **Phase 2** are available [here](screenshots/screenshots.md).
 
 ---
+
+## Conclusion
+This project demonstrates hands-on Linux System Administration skills, covering:
+
+- **Enterprise server deployment**
+- **LVM-based storage solutions**
+- **Network configuration with static IPs**
+- **Secure SSH authentication**
+- **VMware virtualization experience**
+- **Automated backup strategies**
+---
+
 ## Next Steps: Phase 3 - Security Hardening & Automation
 
 With Phase 2 completed, I will now focus on enterprise-grade security enhancements in Phase 3:
@@ -268,15 +278,4 @@ With Phase 2 completed, I will now focus on enterprise-grade security enhancemen
 This phase will ensure a hardened and resilient infrastructure ready for real-world enterprise use.
 
 ---
-## Conclusion
-This project demonstrates hands-on Linux System Administration skills, covering:
-
-- **Enterprise server deployment**
-- **LVM-based storage solutions**
-- **Network configuration with static IPs**
-- **Secure SSH authentication**
-- **VMware virtualization experience**
-
-Automated backup strategies
-This repository will continue to evolve as I implement **Phase 3: Security Hardening and Automation**.
 Stay tuned for the next phase!
