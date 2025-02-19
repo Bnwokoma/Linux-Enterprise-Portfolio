@@ -1,8 +1,44 @@
+# Enterprise RHEL 9 Infrastructure Project
+
+**A real-world, enterprise-grade Linux infrastructure deployment using RHEL 9.**  
+This project simulates a **secure, automated, and production-ready environment**, showcasing **Linux System Administration, storage management, and networking.**
 
 ---
 
+## 📌 Project Overview
+
+This project is divided into **three key phases**, each focusing on a critical aspect of enterprise Linux infrastructure:
+
+### **🛠 Phase 1: Foundational Setup**
+- Installation and configuration of **RHEL 9 virtual machines**  
+- **Static IP networking** for stable connectivity  
+- **Logical Volume Manager (LVM)** for flexible storage management  
+- **Secure SSH access** with key-based authentication  
+- Preparation for **service deployment**  
+
+---
+
+### **🚀 Phase 2: Service Deployment**
+- **Apache Web Server (httpd)** installation and verification  
+- **MariaDB (MySQL) database** setup and security hardening  
+- **NFS shared storage** configuration using **TrueNAS**  
+- **Automated backups** using `rsync` and **cron jobs**  
+
+---
+
+### **🔒 Phase 3: Security Hardening & Automation**
+- Implementing **firewall rules** and **SELinux policies**  
+- Securing SSH with **fail2ban** and key-based authentication  
+- **Automating system updates** and security policies with **Ansible**  
+- Configuring **monitoring and logging** for enterprise compliance  
+
+---
+
+Each phase builds upon the previous one, creating a **scalable, secure, and production-ready Linux infrastructure.**
+---
+
 ## Project Objectives
-Phase 1 of this project focused on the **foundational infrastructure setup**, ensuring all systems are ready for enterprise services.  
+Phase 1 of this project focuses on the **foundational infrastructure setup**, ensuring all systems are ready for enterprise services.  
 
 ### Key Deliverables
 - **Installation and configuration of RHEL 9 virtual machines.**
@@ -120,16 +156,18 @@ Stay tuned for **Phase 2: Service Deployment!**
 
 ---
 
+# Phase 2: Service Deployment
+## Project Objectives
 
-## Phase 2: Service Deployment
+Phase 2 of this project focuses on service deployment.
 
-Phase 2 focuses on deploying essential enterprise services, ensuring a fully functional, scalable, and secure environment.
+### Key Deliverables
+- **Apache Web Server (httpd) installation and verification**
+- **MariaDB (MySQL) database setup and security hardening**
+- **NFS shared storage configuration using TrueNAS**
+- **Automated backups using rsync and cron jobs**
 
-### Services Implemented:
-- **Apache Web Server (httpd)** – Web hosting service
-- **MariaDB Database Server** – Data storage and retrieval
-- **NFS Shared Storage** – Centralized file sharing using TrueNAS
-- **Automated Backups** – rsync scheduled via cron jobs
+---
 
 ### 1. Apache Web Server (httpd)
 
@@ -146,6 +184,8 @@ Phase 2 focuses on deploying essential enterprise services, ensuring a fully fun
    ```
 4. **Verified service and tested access**
 Visited http://192.168.1.100 in a browser to confirm Apache is running.
+
+---
 
 ### 2. MariaDB Database Server
 
@@ -166,6 +206,7 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    ```bash
    mysql -u root -p
    ```
+---
 
 ### 3. NFS Shared Storage on TrueNAS
 
@@ -190,6 +231,8 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    sudo nano /etc/fstab
    192.168.X.X:/mnt/nas-pool/backups /mnt/nas-backups nfs defaults,_netdev 0 0
    ```
+---
+
 ### 4. Automated Backups with rsync and cronjobs
 
 #### Steps Taken:
@@ -208,14 +251,32 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    ```bash
    ls -lah /mnt/nas-backups/primary/
    ```
+---
+## 📸 Screenshots
+All screenshots for **Phase 2** are available [here](screenshots/screenshots.md).
 
+---
+## Next Steps: Phase 3 - Security Hardening & Automation
+
+With Phase 2 completed, I will now focus on enterprise-grade security enhancements in Phase 3:
+
+- **Implementing firewall rules and SELinux policies**
+- **Securing SSH with fail2ban and key-based authentication**
+- **Automating system updates and hardening with Ansible**
+- **Monitoring and logging configurations for compliance**
+
+This phase will ensure a hardened and resilient infrastructure ready for real-world enterprise use.
+
+---
 ## Conclusion
+This project demonstrates hands-on Linux System Administration skills, covering:
 
-With **Phase 2** completed, this project now includes:
+- **Enterprise server deployment**
+- **LVM-based storage solutions**
+- **Network configuration with static IPs**
+- **Secure SSH authentication**
+- **VMware virtualization experience**
 
-- **A fully functional web and database server**
-- **Centralized shared storage for backup management**
-- **Automated data protection through scheduled backups**
-
+Automated backup strategies
 This repository will continue to evolve as I implement **Phase 3: Security Hardening and Automation**.
-
+Stay tuned for the next phase!
