@@ -131,7 +131,7 @@ Phase 2 focuses on deploying essential enterprise services, ensuring a fully fun
 - **NFS Shared Storage** – Centralized file sharing using TrueNAS
 - **Automated Backups** – rsync scheduled via cron jobs
 
-### 1️. Apache Web Server (httpd)
+### 1. Apache Web Server (httpd)
 
 #### Steps Taken:
 1. **Installed Apache**
@@ -144,7 +144,7 @@ Phase 2 focuses on deploying essential enterprise services, ensuring a fully fun
 4. **Verified service and tested access**
 Visited http://192.168.1.100 in a browser to confirm Apache is running.
 
-### 2️. MariaDB Database Server
+### 2. MariaDB Database Server
 
 #### Steps Taken:
 1. **Installed MariaDB**
@@ -161,10 +161,10 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    ```
 4. **Verified database connection**
    ```bash
-  mysql -u root -p
+   mysql -u root -p
   ```
 
-### 3️. NFS Shared Storage (TrueNAS)
+### 3. NFS Shared Storage (TrueNAS)
 
 #### Steps Taken:
 1. **Configured TrueNAS NFS share:**
@@ -184,9 +184,7 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    sudo nano /etc/fstab
    192.168.X.X:/mnt/nas-pool/backups /mnt/nas-backups nfs defaults,_netdev 0 0
    ```
-5. **Automated Backups with rsync and cronjobs**
-
-### 4️. Automated Backups with rsync
+### 4. Automated Backups with rsync and cronjobs
 
 #### Steps Taken:
 1. **Created backup directories on RHEL9-Storage**
