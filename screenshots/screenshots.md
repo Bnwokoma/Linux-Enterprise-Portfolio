@@ -1,6 +1,4 @@
-# 📸 Screenshots Documentation
-
-This file contains all **Phase 1 screenshots** with descriptions.
+# 📸  Phase 1 Screenshots Documentation
 
 ---
 
@@ -42,9 +40,7 @@ This file contains all **Phase 1 screenshots** with descriptions.
 - **Successful SSH Login Without Password**  
   ![SSH Authentication](KeyBased_authentication.png)
 
-# 📸 Screenshots Documentation
-
-This file contains all **Phase 2 screenshots** with descriptions.
+# 📸 Phase 2 Screenshots Documentation
 
 ---
 
