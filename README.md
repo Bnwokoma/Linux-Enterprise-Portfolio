@@ -121,4 +121,97 @@ Stay tuned for **Phase 2: Service Deployment!**
 ---
 
 
+## Phase 2: Service Deployment
+
+Phase 2 focuses on deploying essential enterprise services, ensuring a fully functional, scalable, and secure environment.
+
+### Services Implemented:
+- **Apache Web Server (httpd)** – Web hosting service
+- **MariaDB Database Server** – Data storage and retrieval
+- **NFS Shared Storage** – Centralized file sharing using TrueNAS
+- **Automated Backups** – rsync scheduled via cron jobs
+
+### 1️. Apache Web Server (httpd)
+
+#### Steps Taken:
+1. **Installed Apache**
+2. **Enabled and started Apache**
+3. **Opened firewall ports**
+   ```bash
+   sudo firewall-cmd --add-service=http --permanent
+   sudo firewall-cmd --add-service=https --permanent
+   ```
+4. **Verified service and tested access**
+Visited http://192.168.1.100 in a browser to confirm Apache is running.
+
+### 2️. MariaDB Database Server
+
+#### Steps Taken:
+1. **Installed MariaDB**
+2. **Enabled and started MariaDB**
+3. **Secured MariaDB**
+   ```bash
+   sudo mysql_secure_installation
+   
+   Set root password: Yes
+   Remove anonymous users: Yes
+   Disallow root login remotely: Yes
+   Remove test database: Yes
+   Reload privilege tables: Yes
+   ```
+4. **Verified database connection**
+   ```bash
+  mysql -u root -p
+  ```
+
+### 3️. NFS Shared Storage (TrueNAS)
+
+#### Steps Taken:
+1. **Configured TrueNAS NFS share:**
+   ```bash
+   Path: /mnt/nas-pool/backups
+   Allowed networks: 192.168.1.0/24
+   Enabled NFSv3 & NFSv4
+   ```
+2. **Installed NFS utilities on RHEL9-Storage**
+3. **Mounted NFS Share on RHEL9-Storage**
+   ```bash
+   sudo mkdir -p /mnt/nas-backups
+   sudo mount -t nfs 192.168.X.X:/mnt/nas-pool/backups /mnt/nas-backups
+   ```
+4. **Persisted mount in /etc/fstab**
+   ```bash
+   sudo nano /etc/fstab
+   192.168.X.X:/mnt/nas-pool/backups /mnt/nas-backups nfs defaults,_netdev 0 0
+   ```
+5. **Automated Backups with rsync and cronjobs**
+
+### 4️. Automated Backups with rsync
+
+#### Steps Taken:
+1. **Created backup directories on RHEL9-Storage**
+   ```bash
+   sudo mkdir -p /mnt/nas-backups/primary
+   sudo mkdir -p /mnt/nas-backups/client
+   sudo chown -R sysadmin:sysadmin /mnt/nas-backups/ #### Permissions were preventing backups from taking place
+   ```
+2. **Scheduled automated backups via cron jobs**
+   ```bash
+    crontab -e
+    0 11 * * * rsync -avz /etc/sysconfig sysadmin@192.168.1.102:/mnt/nas-backups/primary/ #### Runs daily backups at 11am
+   ```
+3. **Confirmed backup files were successfully transferred to the remote NAS server**
+   ```bash
+   ls -lah /mnt/nas-backups/primary/
+   ```
+
+## Conclusion
+
+With **Phase 2** completed, this project now includes:
+
+- **A fully functional web and database server**
+- **Centralized shared storage for backup management**
+- **Automated data protection through scheduled backups**
+
+This repository will continue to evolve as I implement **Phase 3: Security Hardening and Automation**.
 
