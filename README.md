@@ -91,6 +91,8 @@ sudo systemctl restart sshd
 ```
 
 ---
+## 📸 Screenshots
+All screenshots for **Phase 1** are available [here](screenshots/screenshots.md).
 
 ---
 
