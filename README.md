@@ -136,6 +136,9 @@ Phase 2 focuses on deploying essential enterprise services, ensuring a fully fun
 #### Steps Taken:
 1. **Installed Apache**
 2. **Enabled and started Apache**
+   ```bash
+    sudo systemctl enable --now httpd
+   ```
 3. **Opened firewall ports**
    ```bash
    sudo firewall-cmd --add-service=http --permanent
@@ -152,28 +155,31 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
 3. **Secured MariaDB**
    ```bash
    sudo mysql_secure_installation
-   
-   Set root password: Yes
-   Remove anonymous users: Yes
-   Disallow root login remotely: Yes
-   Remove test database: Yes
-   Reload privilege tables: Yes
    ```
+  - Set root password: Yes
+  - Remove anonymous users: Yes
+  - Disallow root login remotely: Yes
+  - Remove test database: Yes
+  - Reload privilege tables: Yes
+   
 4. **Verified database connection**
    ```bash
    mysql -u root -p
-  ```
+   ```
 
-### 3. NFS Shared Storage (TrueNAS)
+### 3. NFS Shared Storage on TrueNAS
 
 #### Steps Taken:
-1. **Configured TrueNAS NFS share:**
-   ```bash
-   Path: /mnt/nas-pool/backups
-   Allowed networks: 192.168.1.0/24
-   Enabled NFSv3 & NFSv4
-   ```
+1. **Configured TrueNAS NFS share via Web Browser UI:**
+   
+  - Path: /mnt/nas-pool/backups
+  - Allowed networks: 192.168.1.0/24
+  - Enabled NFSv3 & NFSv4
+   
 2. **Installed NFS utilities on RHEL9-Storage**
+    ```bash
+     sudo dnf install nfs-utils -y
+    ```
 3. **Mounted NFS Share on RHEL9-Storage**
    ```bash
    sudo mkdir -p /mnt/nas-backups
