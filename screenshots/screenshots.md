@@ -38,3 +38,7 @@ This file contains all **Phase 1 screenshots** with descriptions.
 - **Firewall Rules - Allowed Services (`firewall-cmd --list-services`)**  
   ![Firewall Services - Primary](firewall_services_primary.png)
 
+## 5️⃣ SSH Key-Based Authentication
+- **Successful SSH Login Without Password**  
+  ![SSH Authentication](KeyBased_authentication.png)
+
