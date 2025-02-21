@@ -1,78 +1,67 @@
-# 📸  Phase 1 Screenshots Documentation
+## 📂 Phase 1: Foundational Setup
 
----
-
-## 1️⃣ Network Configuration
 - **Primary VM - IP Address Configuration (`ip a`)**  
-  ![IP Address - Primary](ip_a_primary.png)
+  ![IP Address - Primary](Phase1/ip_a_primary.png)
 
 - **Primary VM - `nmtui` Interface (Static IP Setup)**  
-  ![nmtui - Primary](nmtui_primary.png)
+  ![nmtui - Primary](Phase1/nmtui_primary.png)
 
----
-
-## 2️⃣ Disk & Storage Configuration
 - **Primary VM - Disk Layout (`lsblk`)**  
-  ![lsblk - Primary](lsblk_primary.png)
-
-- **Client VM - Disk Layout (`lsblk`)**  
-  ![lsblk - Client](lsblk_client.png)
-
-- **Storage VM - Disk Layout (`lsblk`)**  
-  ![lsblk - Storage](lsblk_storage.png)
+  ![lsblk - Primary](Phase1/lsblk_primary.png)
 
 - **LVM Storage Setup (`lsblk` showing additional storage volumes)**  
-  ![LVM Storage](lvm_storage.png)
+  ![LVM Storage](Phase1/lvm_storage.png)
 
----
-
-## 3️⃣ Network Connectivity Testing
-- **Ping Test - Verifying VM Connectivity**  
-  ![Ping Test](ping_testing.png)
-
----
-
-## 4️⃣ Firewall Configuration
 - **Firewall Rules - Allowed Services (`firewall-cmd --list-services`)**  
-  ![Firewall Services - Primary](firewall_services_primary.png)
+  ![Firewall Services - Primary](Phase1/firewall_services_primary.png)
 
-## 5️⃣ SSH Key-Based Authentication
-- **Successful SSH Login Without Password**  
-  ![SSH Authentication](KeyBased_authentication.png)
-
-# 📸 Phase 2 Screenshots Documentation
+- **Successful SSH Login without Password**  
+  ![SSH Authentication](Phase1/KeyBased_authentication.png)
 
 ---
+## 📂 Phase 2: Service Deployment
 
-## 1️⃣ Apache Web Server Setup (Primary VM)
-- **Apache Status**  
-  ![Apache Status](../screenshots/apache_test_page_primary.png)
-- **Firewall HTTP/HTTPS Rules**  
-  ![Firewall Rules](../screenshots/firewall_http_https_primary.png)
+- **Apache Web Server - Test Page**  
+  ![Apache Test Page - Primary](Phase2/apache_test_page_primary.png)
 
----
+- **MariaDB Connection Verification**  
+  ![MariaDB Connection - Primary](Phase2/mariadb_connection_primary.png)
 
-## 2️⃣ MariaDB Installation & Configuration (Primary VM)
-- **MariaDB Connection Test**  
-  ![MariaDB Connection](../screenshots/mariadb_connection_primary.png)
-- **MariaDB Secure Installation**  
-  ![MariaDB Secure Installation](../screenshots/mysql_secure_installation_primary.png)
+- **MySQL Secure Installation Completed**  
+  ![MySQL Secure Installation - Primary](Phase2/mysql_secure_installation_primary.png)
 
----
+- **NFS Mount Verification on Storage Server**  
+  ![NFS Mount - Storage](Phase2/nfs_mount_storage.png)
 
-## 3️⃣ NFS Shared Storage Configuration (Storage VM & TrueNAS)
 - **TrueNAS NFS Settings**  
-  ![TrueNAS NFS Settings](../screenshots/truenas_nfs_settings.png)
-- **Mounted NFS Storage**  
-  ![NFS Mount on Storage](../screenshots/nfs_mount_storage.png)
+  ![TrueNAS NFS Settings](Phase2/truenas_nfs_settings.png)
+
+- **Automated Backup Configuration (`rsync` + `cronjob`)**  
+  ![Rsync Cronjob - Primary](Phase2/rsync_cronjob_primary.png)
 
 ---
 
-## 4️⃣ Automated Backup with `rsync` (Primary & Storage VMs)
-- **Cronjob Setup (Primary VM)**  
-  ![rsync Cronjob - Primary](../screenshots/rsync_cronjob_primary.png)
-- **Backup Files Verified on TrueNAS**  
-  ![Backup Verified](../screenshots/truenas_backup_verified.png)
-- **Backup Files Verified on Storage VM**  
-  ![Backup Verified - Storage](../screenshots/backup_files_verified_storage.png)
+## 📸 Phase 3 Screenshots Documentation
+
+### 🔐 Security Hardening
+- **SELinux Status Check**  
+  ![SELinux Status](Phase3/selinux_status_primary.png)
+
+- **Fail2Ban Jail Status**  
+  ![Fail2Ban SSH Jail](Phase3/fail2ban_status_primary.png)
+
+### 👥 User Management
+- **User Creation with Ansible**  
+  ![User Creation Playbook](Phase3/ansible_users_playbook.png)
+
+- **Forced Password Change on Login**  
+  ![Password Change Required](Phase3/forced_password_change.png)
+
+### 🔥 Firewall & Security
+- **Firewall Rules Configuration**  
+  ![Firewall Playbook](Phase3/firewall_playbook_yaml.png)
+
+### 📜 Centralized Logging
+- **Logging Test Output**  
+  ![Logging Server](Phase3/logging_test_output.png)
 
