@@ -127,7 +127,7 @@ sudo systemctl restart sshd
 
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 1** are available [here](screenshots/screenshots.md).
+All screenshots for **Phase 1** are available [here](screenshots_phase1.md).
 
 ---
 
@@ -250,7 +250,7 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    ```
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 2** are available [here](screenshots/screenshots.md).
+All screenshots for **Phase 2** are available [here](screenshots_phase2.md).
 
 ---
 
@@ -414,7 +414,7 @@ You can find the remaining playbooks here.
 
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 3** are available [here](screenshots/screenshots.md).
+All screenshots for **Phase 3** are available [here](screenshots_phase2.md).
 
 ## Conclusion
 This phase successfully implemented enterprise security hardening and automation across multiple RHEL 9 VMs:
