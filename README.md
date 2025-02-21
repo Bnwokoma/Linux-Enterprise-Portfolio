@@ -379,7 +379,7 @@ I wanted to centralize the log data and isoloate the critical log data from pote
 
 ### 5. Automating Security with Ansible. 
 Ansible was used to **automate user management, system updates, and security policies**.
-You can find the remaining playbooks here.
+You can find the remaining playbooks [here] (ansible-playbooks).
 
 #### Ansible Playbooks Implemented
 
