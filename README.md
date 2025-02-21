@@ -157,7 +157,6 @@ Stay tuned for **Phase 2: Service Deployment!**
 # Phase 2: Service Deployment
 ## Project Objectives
 
-Phase 2 of this project focuses on service deployment.
 
 ### Key Deliverables
 - **Apache Web Server (httpd) installation and verification**
@@ -278,4 +277,151 @@ With Phase 2 completed, I will now focus on enterprise-grade security enhancemen
 This phase will ensure a hardened and resilient infrastructure ready for real-world enterprise use.
 
 ---
-Stay tuned for the next phase!
+
+# Enterprise RHEL 9 Infrastructure Project
+This phase focuses on **security hardening and automation**, ensuring a **resilient, secure, and manageable** enterprise environment.
+
+---
+# Phase 3: Security Hardening & Automation
+## Project Objectives
+### Key Deliverables
+- **Configured Fail2Ban to prevent unauthorized SSH access.**
+- **Implemented firewall rules to restrict network access.**
+- **Enabled SELinux policies for enhanced security.**
+- **Set up centralized logging with a dedicated logging server.**
+- **Automated user account management with Ansible.**
+- **Implemented system-wide updates and security configurations with Ansible playbooks.**
+
+---
+
+## Infrastructure Overview
+Phase 3 introduced a **centralized logging server** while enhancing **security across all VMs**.
+
+| **VM**            | **Role**                         | **CPU** | **RAM** | **Disk** |
+|------------------|---------------------------------|--------|--------|--------|
+| `logging-server` | Centralized Log Server         | 2 vCPU | 4GB    | 20GB   |
+---
+### 1. Fail2Ban: SSH Intrusion Prevention
+Fail2Ban was installed to **protect SSH from brute-force attacks**. Since Fail2Ban isn’t a dedicated RHEL product, needed to download the epel-release rpm in order to gain access to Fail2Ban
+
+#### Steps Taken
+- **Installed Fail2Ban:**
+  ```bash
+  subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+  dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+  sudo dnf install -y fail2ban
+  ```
+- **Configured SSH jail by modifying `/etc/fail2ban/jail.local`:**
+  ```bash
+  [sshd]
+  enabled = true
+  port = ssh
+  filter = sshd
+  logpath = /var/log/secure
+  maxretry = 5
+  bantime = 600
+  ```
+- **Restarted the service and verified it was running:**
+  ```bash
+  sudo systemctl enable --now fail2ban
+  sudo fail2ban-client status sshd
+  ```
+
+---
+
+### 2. Firewall Hardening: Restricting Network Access
+To ensure **only necessary services** are accessible, **firewalld rules** were enforced across all VMs. We added http,https,ssh, and nfs in our initial phase. So here I just wanted to verify those services were still accessible.
+
+#### Verified settings:
+```bash
+sudo firewall-cmd --list-all
+```
+---
+### 3. SELinux Enforcement
+By default, SELinux is set to Enforcing. However, nothing beats actually verifying. In this environment, assuming could be a vulnerability on its own.
+
+#### Steps Taken
+- **Verified SELinux status:**
+  ```bash
+  sestatus
+  ```
+- **Applied SELinux policies for Apache,SSH & NFS:**
+  ```bash
+	sudo setsebool -P httpd_can_network_connect on
+	sudo setsebool -P httpd_can_network_connect_db on
+	sudo setsebool -P nfs_export_all_rw on
+	sudo setsebool -P ssh_chroot_rw_homedirs on
+```
+---
+
+### 4. Centralized Logging with `logging-server`
+A **dedicated log server** was deployed to **collect logs from all VMs**.
+I wanted to centralize the log data and isoloate the critical log data from potential disruptions on production servers.
+
+#### Steps Taken
+- **Configured `/etc/rsyslog.conf` on `logging-server`:**
+  ```ini
+  module(load="imudp")
+  input(type="imudp" port="514")
+  module(load="imtcp")
+  input(type="imtcp" port="514")
+  ```
+- **Enabled log forwarding from all VMs:**
+  ```bash
+  echo "*.* @192.168.1.103:514" | sudo tee -a /etc/rsyslog.conf #192.168.1.103 = ip of Log Server
+  sudo systemctl restart rsyslog
+  ```
+- **Verified log collection:**
+  ```bash
+  sudo tail -f /var/log/messages
+  ```
+---
+
+### 5. Automating Security with Ansible. 
+Ansible was used to **automate user management, system updates, and security policies**.
+You can find the remaining playbooks here.
+
+#### Ansible Playbooks Implemented
+
+**Automated User Creation (`users.yml`):**
+```yaml
+---
+- name: Create a new employee account
+  hosts: all
+  become: yes
+
+  vars_prompt:
+    - name: "new_user"
+      prompt: "Enter the new employee's username"
+      private: no
+
+    - name: "new_password"
+      prompt: "Enter a default password for the employee"
+      private: yes
+
+  tasks:
+    - name: Create a new user
+      ansible.builtin.user:
+        name: "{{ new_user }}"
+        groups: allemployees
+        shell: /bin/bash
+        password: "{{ 'new_password' | password_hash('sha512') }}"
+
+    - name: Force password change on first login
+      ansible.builtin.command:
+        cmd: "chage -d 0 {{ new_user }}"
+```
+
+---
+
+## Conclusion
+This phase successfully implemented **enterprise security hardening and automation** across multiple RHEL 9 VMs:
+- **Fail2Ban for SSH protection**
+- **Firewall rules for network security**
+- **SELinux for access control**
+- **Centralized logging for system monitoring**
+- **Ansible automation for user and system management**
+
+**This infrastructure is now hardened, automated, and production-ready. **
+
+
