@@ -330,7 +330,7 @@ Fail2Ban was installed to **protect SSH from brute-force attacks**. Since Fail2B
 ---
 
 ### 2. Firewall Hardening: Restricting Network Access
-To ensure **only necessary services** are accessible, **firewalld rules** were enforced across all VMs. We added http,https,ssh, and nfs in our initial phase. So here I just wanted to verify those services were still accessible.
+To ensure only necessary services are accessible, **firewalld rules** were enforced across all VMs. We added http,https,ssh, and nfs in our initial phase. So here I just wanted to verify those services were still accessible.
 
 #### Verified settings:
 ```bash
@@ -351,16 +351,16 @@ By default, SELinux is set to Enforcing. However, nothing beats actually verifyi
 	sudo setsebool -P httpd_can_network_connect_db on
 	sudo setsebool -P nfs_export_all_rw on
 	sudo setsebool -P ssh_chroot_rw_homedirs on
-```
+  ```
 ---
 
-### 4. Centralized Logging with `logging-server`
-A **dedicated log server** was deployed to **collect logs from all VMs**.
+### 4. Centralized Logging
+A new server, Logging Serer,was deployed to **collect logs from all VMs**.
 I wanted to centralize the log data and isoloate the critical log data from potential disruptions on production servers.
 
 #### Steps Taken
 - **Configured `/etc/rsyslog.conf` on `logging-server`:**
-  ```ini
+  ```bash
   module(load="imudp")
   input(type="imudp" port="514")
   module(load="imtcp")
@@ -413,15 +413,17 @@ You can find the remaining playbooks here.
 ```
 
 ---
+## 📸 Screenshots
+All screenshots for **Phase 3** are available [here](screenshots/screenshots.md).
 
 ## Conclusion
-This phase successfully implemented **enterprise security hardening and automation** across multiple RHEL 9 VMs:
+This phase successfully implemented enterprise security hardening and automation across multiple RHEL 9 VMs:
 - **Fail2Ban for SSH protection**
 - **Firewall rules for network security**
 - **SELinux for access control**
 - **Centralized logging for system monitoring**
 - **Ansible automation for user and system management**
 
-**This infrastructure is now hardened, automated, and production-ready. **
+This infrastructure is now hardened, automated, and production-ready.
 
 
