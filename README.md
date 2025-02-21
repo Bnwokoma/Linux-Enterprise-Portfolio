@@ -1,36 +1,36 @@
 # Enterprise RHEL 9 Infrastructure Project
-
 **A real-world, enterprise-grade Linux infrastructure deployment using RHEL 9.**  
+
 This project simulates a **secure, automated, and production-ready environment**, showcasing **Linux System Administration, storage management, and networking.**
 
 ---
 
 ## 📌 Project Overview
 
-This project is divided into **three key phases**, each focusing on a critical aspect of enterprise Linux infrastructure:
+This project is divided into **3 key phases**, each focusing on a critical aspect of enterprise Linux infrastructure:
 
 ### **🛠 Phase 1: Foundational Setup**
-- Installation and configuration of **RHEL 9 virtual machines**  
-- **Static IP networking** for stable connectivity  
-- **Logical Volume Manager (LVM)** for flexible storage management  
-- **Secure SSH access** with key-based authentication  
-- Preparation for **service deployment**  
+- Installation and configuration of RHEL 9 virtual machines  
+- Static IP networking for stable connectivity  
+- Logical Volume Manager (LVM) for flexible storage management  
+- Secure SSH access with key-based authentication  
+- Preparation for service deployment  
 
 ---
 
 ### **Phase 2: Service Deployment**
-- **Apache Web Server (httpd)** installation and verification  
-- **MariaDB (MySQL) database** setup and security hardening  
-- **NFS shared storage** configuration using **TrueNAS**  
-- **Automated backups** using `rsync` and **cron jobs**  
+- Apache Web Server (httpd) installation and verification  
+- MariaDB (MySQL) database setup and security hardening  
+- NFS shared storage configuration using TrueNAS  
+- Automated backups using `rsync` and cron jobs  
 
 ---
 
 ### **🔒 Phase 3: Security Hardening & Automation**
-- Implementing **firewall rules** and **SELinux policies**  
-- Securing SSH with **fail2ban** and key-based authentication  
-- **Automating system updates** and security policies with **Ansible**  
-- Configuring **monitoring and logging** for enterprise compliance  
+- Implementing firewall rules and SELinux policies  
+- Securing SSH with fail2ban and key-based authentication  
+- Automating system updates and security policies with Ansible 
+- Configuring monitoring and logging for enterprise compliance  
 
 ---
 
@@ -42,27 +42,27 @@ Each phase builds upon the previous one, creating a **scalable, secure, and prod
 Phase 1 of this project focuses on the **foundational infrastructure setup**, ensuring all systems are ready for enterprise services.  
 
 ### Key Deliverables
-- **Installation and configuration of RHEL 9 virtual machines.**
-- **Static IP networking across multiple servers.**
-- **Logical Volume Manager (LVM) configuration for flexible storage management.**
-- **Secure SSH access with key-based authentication.**
-- **Preparation for service deployment in Phase 2.**
+- Installation and configuration of RHEL 9 virtual machines.
+- Static IP networking across multiple servers.
+- Logical Volume Manager (LVM) configuration for flexible storage management.
+- Secure SSH access with key-based authentication.
+- Preparation for service deployment in Phase 2.
 
 ---
 
 ## Infrastructure Overview
-The project consists of **three RHEL 9 virtual machines** running in **VMware Workstation**, each serving a distinct role.
+The project consists of **three RHEL 9 virtual machines** running in **VMware Workstation**, each serving a distinct role. Later in Phase 3, a 4th VM will be added and server as the Syslog Server.
 
 | **VM**          | **Role**                 | **CPU** | **RAM** | **Disk** |
 |---------------|-------------------------|--------|--------|--------|
 | `RHEL9-Primary` | Web & Database Server  | 2 vCPU | 4GB    | 30GB   |
 | `RHEL9-Client`  | Test Client            | 1 vCPU | 2GB    | 15GB   |
-| `RHEL9-Storage` | NFS/Samba Backup Server | 2 vCPU | 2GB    | 20GB   |
+| `RHEL9-Storage` | NFS                    | 2 vCPU | 2GB    | 20GB   |
 
 ---
 
 ### 1. Networking: Static IP Assignment
-Each VM was assigned a **static IP** to ensure stable connectivity:
+Each VM was assigned a static IP to ensure stable connectivity:
 
 | **VM**          | **IP Address**  | **Subnet Mask**  | **Gateway** |
 |---------------|---------------|----------------|------------|
@@ -80,7 +80,7 @@ ping -c 3 192.168.1.101  # Test connectivity
 ---
 
 ### 2. Storage: LVM-Based Disk Management
-To ensure **scalability**, I configured **Logical Volume Manager (LVM).**
+To for storage scalability, I configured **Logical Volume Manager (LVM).**
 
 | **VM**          | **LVM Volume**  | **Size**  | **Purpose** |
 |---------------|---------------|--------|------------|
@@ -100,7 +100,7 @@ mount /dev/rhel/lv_storage /mnt/storage
 ---
 
 ### 3. Secure SSH Access: Key-Based Authentication
-To allow secure, **passwordless SSH login**, I configured key-based authentication.
+To allow a secure, passwordless SSH login, I configured key-based authentication.
 
 #### Steps Taken
 1. **Generated SSH keys on `RHEL9-Primary`:**
@@ -118,7 +118,7 @@ To allow secure, **passwordless SSH login**, I configured key-based authenticati
    ssh sysadmin@192.168.1.102
    ```
 
-If password prompts persisted, **permissions were corrected**:
+If password prompts persisted, permissions were corrected as such:
 ```bash
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
@@ -127,12 +127,12 @@ sudo systemctl restart sshd
 
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 1** are available [here](screenshots_phase1.md).
+All screenshots of configurations & verifications for **Phase 1** are available [here](screenshots_phase1.md).
 
 ---
 
 ## Conclusion
-This project demonstrates **hands-on Linux System Administration skills**, covering:
+This project demonstrates hands-on Linux System Administration skills, covering:
 - **Enterprise server deployment**
 - **LVM-based storage solutions**
 - **Network configuration with static IPs**
@@ -141,16 +141,11 @@ This project demonstrates **hands-on Linux System Administration skills**, cover
 
 
 ## Next Steps: Phase 2 Service Deployment
-With **Phase 1 completed**, I will now deploy **enterprise services** in **Phase 2**:
-- **Apache Web Server (httpd)**
-- **MariaDB (MySQL) Database**
-- **NFS/Samba for Shared Storage**
-- **Automation with Ansible (Planned for later)**
-
----
-
-**This repository will continue to evolve as I deploy services in the upcoming phases.**  
-Stay tuned for **Phase 2: Service Deployment!**
+With **Phase 1 completed**, I will now deploy enterprise services in **Phase 2**:
+- Apache Web Server (httpd)
+- MariaDB (MySQL) Database
+- NFS for Shared Storage
+- Backup Strategies
 
 ---
 
@@ -159,10 +154,10 @@ Stay tuned for **Phase 2: Service Deployment!**
 
 
 ### Key Deliverables
-- **Apache Web Server (httpd) installation and verification**
-- **MariaDB (MySQL) database setup and security hardening**
-- **NFS shared storage configuration using TrueNAS**
-- **Automated backups using rsync and cron jobs**
+- Apache Web Server (httpd) installation and verification
+- MariaDB (MySQL) database setup and security hardening
+- NFS shared storage configuration using TrueNAS
+- Automated backups using rsync and cron jobs
 
 ---
 
@@ -170,16 +165,19 @@ Stay tuned for **Phase 2: Service Deployment!**
 
 #### Steps Taken:
 1. **Installed Apache**
-2. **Enabled and started Apache**
+   ```bash
+    sudo dnf install httpd -y
+   ```
+3. **Enabled and started Apache**
    ```bash
     sudo systemctl enable --now httpd
    ```
-3. **Opened firewall ports**
+4. **Opened firewall ports**
    ```bash
    sudo firewall-cmd --add-service=http --permanent
    sudo firewall-cmd --add-service=https --permanent
    ```
-4. **Verified service and tested access**
+5. **Verified service and tested access**
 Visited http://192.168.1.100 in a browser to confirm Apache is running.
 
 ---
@@ -250,7 +248,7 @@ Visited http://192.168.1.100 in a browser to confirm Apache is running.
    ```
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 2** are available [here](screenshots_phase2.md).
+All screenshots of configurations & verifications for **Phase 2** are available [here](screenshots_phase2.md).
 
 ---
 
@@ -274,35 +272,34 @@ With Phase 2 completed, I will now focus on enterprise-grade security enhancemen
 - **Automating system updates and hardening with Ansible**
 - **Monitoring and logging configurations for compliance**
 
-This phase will ensure a hardened and resilient infrastructure ready for real-world enterprise use.
-
 ---
 
 # Enterprise RHEL 9 Infrastructure Project
-This phase focuses on **security hardening and automation**, ensuring a **resilient, secure, and manageable** enterprise environment.
+This phase focuses on **security hardening and automation**, providing a strong, secure, and manageable enterprise environment.
 
 ---
 # Phase 3: Security Hardening & Automation
 ## Project Objectives
 ### Key Deliverables
-- **Configured Fail2Ban to prevent unauthorized SSH access.**
-- **Implemented firewall rules to restrict network access.**
-- **Enabled SELinux policies for enhanced security.**
-- **Set up centralized logging with a dedicated logging server.**
-- **Automated user account management with Ansible.**
-- **Implemented system-wide updates and security configurations with Ansible playbooks.**
+- Configured Fail2Ban to prevent unauthorized SSH access.
+- Implemented firewall rules to restrict network access.
+- Enabled SELinux policies for enhanced security.
+- Set up centralized logging with a dedicated logging server.
+- Automated user account management with Ansible.
+- Implemented system-wide updates and security configurations with Ansible playbooks.
 
 ---
 
 ## Infrastructure Overview
-Phase 3 introduced a **centralized logging server** while enhancing **security across all VMs**.
+Phase 3 introduces a syslog server to provide a centralized location to collect and store system logs from various devices.
 
 | **VM**            | **Role**                         | **CPU** | **RAM** | **Disk** |
 |------------------|---------------------------------|--------|--------|--------|
-| `logging-server` | Centralized Log Server         | 2 vCPU | 4GB    | 20GB   |
+| `logging-server` | Centralized Syslog Server         | 2 vCPU | 4GB    | 20GB   |
+
 ---
 ### 1. Fail2Ban: SSH Intrusion Prevention
-Fail2Ban was installed to **protect SSH from brute-force attacks**. Since Fail2Ban isn’t a dedicated RHEL product, needed to download the epel-release rpm in order to gain access to Fail2Ban
+Fail2Ban was installed to protect SSH from brute-force attacks. Since Fail2Ban isn’t a dedicated RHEL product, needed to download the epel-release rpm in order to gain access to Fail2Ban.
 
 #### Steps Taken
 - **Installed Fail2Ban:**
@@ -330,7 +327,7 @@ Fail2Ban was installed to **protect SSH from brute-force attacks**. Since Fail2B
 ---
 
 ### 2. Firewall Hardening: Restricting Network Access
-To ensure only necessary services are accessible, **firewalld rules** were enforced across all VMs. We added http,https,ssh, and nfs in our initial phase. So here I just wanted to verify those services were still accessible.
+To ensure only necessary services are accessible, firewalld rules were enforced across all VMs. We added http,https,ssh, and nfs in our initial phase. So here I just wanted to verify those services were still accessible.
 
 #### Verified settings:
 ```bash
@@ -355,7 +352,7 @@ By default, SELinux is set to Enforcing. However, nothing beats actually verifyi
 ---
 
 ### 4. Centralized Logging
-A new server, Logging Serer,was deployed to **collect logs from all VMs**.
+A new server, Logging Serer,was deployed to collect logs from all VMs.
 I wanted to centralize the log data and isoloate the critical log data from potential disruptions on production servers.
 
 #### Steps Taken
@@ -378,8 +375,8 @@ I wanted to centralize the log data and isoloate the critical log data from pote
 ---
 
 ### 5. Automating Security with Ansible. 
-Ansible was used to **automate user management, system updates, and security policies**.
-You can find the remaining playbooks [here] (ansible-playbooks).
+Ansible was used to automate user management, system updates, and security policies.
+You can find all playbooks [here] (ansible-playbooks).
 
 #### Ansible Playbooks Implemented
 
@@ -414,7 +411,7 @@ You can find the remaining playbooks [here] (ansible-playbooks).
 
 ---
 ## 📸 Screenshots
-All screenshots for **Phase 3** are available [here](screenshots_phase2.md).
+All screenshots of configurations & verifications for **Phase 3** are available [here](screenshots_phase2.md).
 
 ## Conclusion
 This phase successfully implemented enterprise security hardening and automation across multiple RHEL 9 VMs:
