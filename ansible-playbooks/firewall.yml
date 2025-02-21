@@ -1,0 +1,25 @@
+
+---
+
+- name: Configure Firewall
+  hosts: all
+  become: yes
+  tasks:
+    - name: Allow SSh
+      ansible.builtin.firewalld:
+        service: ssh
+        permanent: yes
+        state: enabled
+
+    - name: Allow HTTP & HTTPS
+      ansible.builtin.firewalld:
+        service: "{{ item }}"
+        permanent: yes
+        state: enabled
+    
+      loop:
+        - http
+        - https
+
+    - name: Reload Firewall
+      ansible.builtin.command: firewall-cmd --reload

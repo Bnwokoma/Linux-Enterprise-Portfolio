@@ -1,0 +1,26 @@
+
+---
+
+- name: Create a new employee account
+  hosts: all
+  become: yes
+  vars_prompt:
+    - name: "new_user"
+      prompt: "Enter the new employee's username"
+      private: no
+
+    - name: "new_password"
+      prompt: "Enter a default password for the employee"
+      private: yes
+
+  tasks:
+    - name: Create a new user
+      ansible.builtin.user:
+        name: "{{ new_user }}"
+        groups: allemployees
+        shell: /bin/bash
+        password: "{{ 'new_password' | password_hash('sha512') }}"
+
+    - name: Force password change on first login
+      ansible.builtin.command: 
+        cmd: "chage -d 0 {{ new_user }}"
